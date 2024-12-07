@@ -1,7 +1,7 @@
 # TFS-NeRF: Template-Free NeRF for Semantic 3D Reconstruction of Dynamic Scene
 
 
-> [**TFS-NeRF: Template-Free NeRF for Semantic 3D Reconstruction of Dynamic Scene**](https://github.com/sbsws88/tfs_nerf.github.io/)            
+> [**TFS-NeRF: Template-Free NeRF for Semantic 3D Reconstruction of Dynamic Scene**](https://sbsws88.github.io/tfs_nerf/)            
 > Monash University, IIT Bombay   
 > Sandika Biswas, Qianyi Wu, Biplab Banerjee, and Hamid Rezatofighi   
 
