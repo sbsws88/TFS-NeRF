@@ -1,0 +1,163 @@
+learning_rate: 5.0e-4
+sched_milestones: [200,500]
+sched_factor: 0.5
+is_continue: True
+use_body_parsing: False
+with_bkgd: True
+using_inpainting: False
+use_bbox_sampler: False
+debug: True
+debug_id: [0, 8, 24, 47]
+
+#### SDFNet (fg)
+implicit_network:
+    feature_vector_size: 256
+    hash_d: 0
+    d_in: 3
+    d_out: 1  #1  (changed to consider semantic head)
+    dims: [ 256, 256, 256, 256, 256, 256, 256, 256 ]
+    init: 'geometry'
+    bias: 0.6
+    skip_in: [4]
+    weight_norm: True
+    embedder_mode: 'fourier'
+    multires: 6
+    cond: 'kps'
+    cam_cond: none 
+    sem_cond: 'sem_label' #none   
+    scene_bounding_sphere: 3.0
+    sigmoid: 10
+    use_romp_verts: True
+    pred_skinning_weight: True
+    kps: 24 #33
+    skel_type: 'scene'
+    softmax_type: softmax
+implicit_network_obj:
+    feature_vector_size: 256
+    hash_d: 0
+    d_in: 3
+    d_out: 2  #1  (changed to consider semantic head)
+    dims: [ 256, 256, 256, 256, 256, 256, 256, 256 ]
+    init: 'geometry'
+    bias: 0.6
+    skip_in: [4]
+    weight_norm: True
+    embedder_mode: 'fourier'
+    multires: 6
+    cond: 'kps'
+    cam_cond: none 
+    sem_cond: 'sem_label' #none   
+    scene_bounding_sphere: 3.0
+    sigmoid: 10
+    use_romp_verts: True
+    pred_skinning_weight: True
+    kps: 24 #33
+    skel_type: 'scene'
+    softmax_type: softmax    
+bone_sampler:
+    local_sigma: 0.005
+    global_sigma: 0.02        
+deformer:
+    type: inn
+    use_broyden: false
+    softmax_mode: softmax
+    dist_type: bone  #### can be wrt bone also as in TAVA 
+    use_keyframe: true   
+    # LBS MLP
+    network:
+      feature_vector_size: 0
+      hash_d: 0
+      d_in: 3
+      d_out: 27 #33
+      dims: [ 256, 256]
+      init: 'geometry'
+      bias: 1    
+      skip_in: []
+      weight_norm: true
+      embedder_mode: 'fourier'
+      multires: 0
+      cond: none 
+      cam_cond: none
+      sem_cond: 'sem_label'   
+      scene_bounding_sphere: 3.0
+      kps: 48 #33
+      skel_type: 'obj'
+      softmax_type: softmax
+      offsetnet: False      
+offsetnet:
+    d_in: 3
+    d_out: 3   
+    kps: 48 #33 
+    dims: [128, 128, 128, 128]
+    skip_in: []      
+rendering_network:
+    num_sem: 0
+    feature_vector_size: 256
+    mode: "pose"
+    d_in:  14 
+    d_out: 3
+    dims: [ 256, 256, 256, 256]
+    weight_norm: True
+    dim_frame_encoding: 32 ## for camera encoding
+    multires_view: -1
+    ao_layer: False 
+    kps: 48 #33
+bg_implicit_network:
+    feature_vector_size: 256
+    hash_d: 0
+    d_in: 4
+    d_out: 1
+    dims: [ 256, 256, 256, 256, 256, 256, 256, 256 ]
+    init: 'none'
+    bias: 0.0
+    skip_in: [4]
+    weight_norm: False
+    embedder_mode: 'fourier'
+    multires: 10
+    cond: 'frame'  #### bg sdf conditioned on frame
+    cam_cond: 'cam'
+    sem_cond: none  
+    dim_frame_encoding: 32
+    kps: 48 #33
+bg_rendering_network:
+    num_sem: 0
+    feature_vector_size: 256
+    mode: 'nerf_frame_encoding'
+    d_in: 3
+    d_out: 3
+    dims: [128]
+    weight_norm: False
+    multires_view: 4
+    dim_frame_encoding: 32
+    ao_layer: False
+    kps: 48 #33
+shadow_network:
+    d_in: 3
+    d_out: 1
+    dims: [128, 128]
+    weight_norm: False
+density:
+    params_init: {beta: 0.1}
+    beta_min: 0.0001
+obj_density:
+    params_init: {beta: 0.1}
+    beta_min: 0.0001    
+ray_sampler:
+    near: 0.0
+    N_samples: 64
+    N_samples_eval: 128
+    N_samples_extra: 32
+    eps: 0.1
+    beta_iters: 10
+    max_total_iters: 5
+    N_samples_inverse_sphere: 32
+    add_tiny: 1.0e-6
+loss:
+    semantic_weight : 5.0e-2
+    eikonal_weight : 0.1
+    bce_weight: 0.0 #5.0e-3
+    opacity_sparse_weight: 3.0e-3
+    in_shape_weight: 1.0e-2
+    lambda_bone_w: 10
+    lambda_skel: 2
+    opacity_weight: 1

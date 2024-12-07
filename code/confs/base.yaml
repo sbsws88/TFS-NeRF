@@ -1,0 +1,14 @@
+hydra:
+    run:
+        dir: "../outputs/${exp}/${run}/${exp_name}"
+
+defaults:
+  - model: model 
+  - dataset: yogaball
+  - _self_
+
+seed: 42
+project_name: "model_w_bg"
+exp: ${dataset.train.type}
+run: ${dataset.metainfo.subject}
+exp_name: model_w_realnvp 

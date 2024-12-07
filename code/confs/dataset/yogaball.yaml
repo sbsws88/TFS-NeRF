@@ -1,0 +1,40 @@
+metainfo:
+    gender: 'male'
+    root: '../data'
+    data_dir : Date01_Sub01_yogaball_play 
+    subject: Date01_Sub01_yogaball_play
+    start_frame: 0
+    end_frame: 159 
+    n_frames: 41
+    n_cams: 4
+
+train:
+    type: "Video"
+    batch_size: 1
+    drop_last: False
+    shuffle: True
+    worker: 8
+
+    num_sample : 512 
+
+valid:
+    type: "VideoVal"
+    image_id: 0
+    batch_size: 1
+    drop_last: False
+    shuffle: False
+    worker: 8
+
+    num_sample : -1
+    pixel_per_batch: 2048 
+
+test:
+    type: "VideoTest"
+    image_id: 0
+    batch_size: 1
+    drop_last: False
+    shuffle: False
+    worker: 8
+
+    num_sample : -1
+    pixel_per_batch: 1200 
