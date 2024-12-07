@@ -5,7 +5,7 @@
 > Monash University, IIT Bombay   
 > Sandika Biswas, Qianyi Wu, Biplab Banerjee, and Hamid Rezatofighi   
 
-### [**[Project Page]**](https://github.com/sbsws88/tfs_nerf.github.io/) **|** [**[Paper]**](https://arxiv.org/abs/2409.17459)
+### [**[Project Page]**](https://sbsws88.github.io/tfs_nerf/) **|** [**[Paper]**](https://arxiv.org/abs/2409.17459)
 
 Abstract
 -----------------
