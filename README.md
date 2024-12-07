@@ -34,7 +34,6 @@ Run
 -----------------
 
 ```bash
-# Might be good to go grab a coffee while this runs :)
 python reconstruct.py
 ```
 
@@ -89,7 +88,7 @@ tfs_nerf
 
 Citation
 ---------------
-If you find TFS-NeRF useful in your research or refer to the provided baseline results, please star this repository and consider citing:
+If you find TFS-NeRF useful in your research please consider citing:
 ```
 @article{biswas2024tfs,
   title={TFS-NeRF: Template-Free NeRF for Semantic 3D Reconstruction of Dynamic Scene},
